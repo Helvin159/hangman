@@ -32,6 +32,8 @@ const displayWord = () => {
 		finalMessage.innerText = 'Congratulations!!! You won!';
 		popup.style.display = 'flex';
 	}
+
+	keyDownListener();
 };
 
 // Show Notification
@@ -63,11 +65,12 @@ const updateWrongLettersEl = () => {
 	if (wrongLetters.length === figureParts.length) {
 		finalMessage.innerText = 'Unfortunately, you lost!';
 		popup.style.display = 'flex';
+
+		window.removeEventListener('keydown', keydownEventFunc);
 	}
 };
 
-// Event Listner
-window.addEventListener('keydown', (e) => {
+const keydownEventFunc = (e) => {
 	if (e.code.includes('Key')) {
 		const letter = e.key;
 
@@ -87,7 +90,11 @@ window.addEventListener('keydown', (e) => {
 			}
 		}
 	}
-});
+};
+
+// Event Listner
+const keyDownListener = () =>
+	window.addEventListener('keydown', keydownEventFunc);
 
 playAgainBtn.addEventListener('click', () => {
 	correctLetters.splice(0);
