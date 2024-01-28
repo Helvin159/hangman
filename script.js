@@ -94,9 +94,9 @@ playAgainBtn.addEventListener('click', () => {
 	wrongLetters.splice(0);
 
 	selectedWord = words[Math.floor(Math.random() * words.length)];
+	popup.style.display = 'none';
 	displayWord();
 	updateWrongLettersEl();
-	popup.style.display = 'none';
 });
 
 displayWord();
